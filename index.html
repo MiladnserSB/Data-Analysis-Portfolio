@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milad AlNser | Data Analyst & Insights Specialist</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #050507;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --accent: #6366f1; 
+            --accent-glow: rgba(99, 102, 241, 0.2);
+            --text-main: #f4f4f5;
+            --text-dim: #a1a1aa;
+            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.2rem 8%;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(5, 5, 7, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo { font-weight: 800; letter-spacing: 1px; color: var(--text-main); font-size: 1.2rem; }
+        .logo span { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { 
+            color: var(--text-dim); 
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            font-weight: 500; 
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+
+        .connect-btn {
+            background: var(--gradient);
+            color: #ffffff !important; /* Force white text */
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.4s;
+            text-decoration: none;
+        }
+        .connect-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px var(--accent-glow); }
+
+        /* Hero Section */
+        .hero { text-align: center; padding: 120px 10% 80px; }
+        .slogan { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 5px; color: var(--accent); margin-bottom: 1rem; font-weight: 600; }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; margin-bottom: 1rem; }
+        .hero h2 { font-size: 1.5rem; color: var(--text-dim); font-weight: 400; margin-bottom: 2rem; }
+        .gradient-text { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* Sections General */
+        section { padding: 80px 8%; max-width: 1400px; margin: 0 auto; }
+        .section-header { margin-bottom: 40px; }
+        .section-header h2 { font-size: 2rem; font-weight: 800; }
+        .section-header p { color: var(--text-dim); margin-top: 5px; }
+
+        /* Skills Bento Grid */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .skill-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 24px;
+            transition: 0.3s;
+        }
+        .skill-card:hover { border-color: var(--accent); background: rgba(255,255,255,0.05); }
+        .skill-card i { font-size: 1.5rem; color: var(--accent); margin-bottom: 15px; }
+        .skill-card h4 { margin-bottom: 15px; font-size: 1.1rem; }
+
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .skill-tags span { 
+            background: rgba(255,255,255,0.05); 
+            padding: 5px 12px; 
+            border-radius: 8px; 
+            font-size: 0.8rem; 
+            color: var(--text-dim);
+            border: 1px solid var(--border);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+        .project-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .project-img { width: 100%; height: 230px; object-fit: cover; transition: 0.5s; }
+        .project-info { padding: 1.5rem; }
+        .project-info h3 { margin-bottom: 10px; }
+        .project-info p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 15px; }
+
+        /* Contact Section */
+        .contact-section { text-align: center; background: linear-gradient(to top, rgba(99, 102, 241, 0.05), transparent); border-radius: 50px; margin-bottom: 50px; }
+        .contact-links { display: flex; justify-content: center; gap: 30px; margin-top: 30px; flex-wrap: wrap; }
+        .contact-item { 
+            text-decoration: none; 
+            color: var(--text-main); 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            padding: 12px 25px; 
+            border-radius: 15px; 
+            background: var(--card-bg); 
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+        .contact-item:hover { border-color: var(--accent); transform: translateY(-3px); background: rgba(99, 102, 241, 0.1); }
+        .contact-item i { color: var(--accent); font-size: 1.2rem; }
+
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px); }
+        .modal-content { background: #0c0c0e; margin: 2% auto; padding: 40px; width: 90%; max-width: 850px; border-radius: 35px; max-height: 90vh; overflow-y: auto; border: 1px solid var(--border); position: relative; }
+        .close-modal { position: absolute; right: 30px; top: 20px; font-size: 2rem; cursor: pointer; color: var(--text-dim); }
+        .modal-img { width: 100%; border-radius: 20px; margin-bottom: 30px; }
+
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MILAD<span> ALNSER</span></div>
+        <div class="nav-links">
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact" class="connect-btn">Connect With Me</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <p class="slogan reveal">Turning Noise into Knowledge.</p>
+        <h1 class="reveal">Milad AlNser</h1>
+        <h2 class="reveal gradient-text">Data Analyst & Insights Specialist</h2>
+        <p class="reveal" style="color: var(--text-dim); max-width: 600px; margin: 0 auto;">Expert in translating complex datasets into high-impact visual intelligence and strategic business narratives.</p>
+    </header>
+
+    <section id="skills" class="reveal">
+        <div class="section-header">
+            
+            <h2>Technical Toolkit</h2>
+            <p>Specialized in end-to-end data processing and advanced visualization.</p>
+        </div>
+        <div class="skills-container">
+            <div class="skill-card">
+                <i class="fas fa-table"></i>
+                <h4>Advanced Excel Stack</h4>
+                <div class="skill-tags">
+                    <span>Power Query</span> <span>Power Pivot</span> <span>Pivot Tables</span> <span>Advanced DAX</span> <span>Data Cleaning</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-chart-bar"></i>
+                <h4>Business Intelligence</h4>
+                <div class="skill-tags">
+                    <span>Power BI</span> <span>Interactive Dashboards</span> <span>KPI Design</span> <span>Visual Storytelling</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-code"></i>
+                <h4>Data Science & DB</h4>
+                <div class="skill-tags">
+                    <span>SQL</span> <span>Python</span> <span>Star Schema</span> <span>Data Modeling</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="reveal">
+        <div class="section-header">
+            
+            <h2>Featured Projects</h2>
+            <p>Real-world case studies focused on ROI and operational efficiency.</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card" onclick="openProject('project1')">
+                <img src="E:\Data Analysis Projects\Data Analysis Portfolio\Udemy_Courses.png" class="project-img">
+                <div class="project-info">
+                    <h3>Udemy Revenue Optimization</h3>
+                    <p>Comprehensive market analysis to identify high-margin course categories.</p>
+                    <div class="skill-tags"><span>Power BI</span> <span>DAX</span></div>
+                </div>
+            </div>
+            <div class="project-card" onclick="openProject('project2')">
+                <img src="E:\Data Analysis Projects\Data Analysis Portfolio\Life_Style.png" class="project-img">
+                <div class="project-info">
+                    <h3>Lifestyle Risk Prediction</h3>
+                    <p>Health risk modeling based on behavioral habits of 5,000 individuals.</p>
+                    <div class="skill-tags"><span>Analytics</span> <span>Power BI</span></div>
+                </div>
+            </div>
+            <div class="project-card" onclick="openProject('project3')">
+                <img src="E:\Data Analysis Projects\Data Analysis Portfolio\AAA_Sales.png" class="project-img">
+                <div class="project-info">
+                    <h3>Motorcycle Sales Dashboard</h3>
+                    <p>Handling 250K+ rows to track YoY growth and regional performance.</p>
+                    <div class="skill-tags"><span>Excel Stack</span> <span>Modeling</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section reveal">
+        <div class="section-header">
+            
+            <h2>Get In Touch</h2>
+            <p>I'm always open to discussing new projects or data opportunities.</p>
+        </div>
+        <div class="contact-links">
+            <a href="https://wa.me/963981096469" target="_blank" class="contact-item">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="mailto:miladalnser0@gmail.com" class="contact-item">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+            <a href="https://www.linkedin.com/in/miladalnser" target="_blank" class="contact-item">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/MiladnserSB" target="_blank" class="contact-item">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+        </div>
+        <p style="margin-top: 40px; color: var(--text-dim); font-size: 0.8rem;">© 2026 Milad AlNser. Designed for high performance.</p>
+    </section>
+
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeBtn">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        // Reveal Logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Projects Data
+        const projects = {
+            project1: {
+                title: "Udemy Revenue Optimization",
+                img: "E:\\Data Analysis Projects\\Data Analysis Portfolio\\Udemy_Courses.png",
+                details: "Analyzing 3,000+ technical courses to identify high-margin categories and optimize marketing spend."
+            },
+            project2: {
+                title: "Lifestyle Risk Prediction",
+                img: "E:\\Data Analysis Projects\\Data Analysis Portfolio\\Life_Style.png",
+                details: "Established correlations between sugar intake, sleep quality, and BMI for 5,000 subjects using advanced modeling."
+            },
+            project3: {
+                title: "Motorcycle Sales Dashboard",
+                img: "E:\\Data Analysis Projects\\Data Analysis Portfolio\\AAA_Sales.png",
+                details: "Processing 250,000+ sales lines with Star Schema modeling to achieve 34% YoY growth tracking."
+            }
+        };
+
+        function openProject(id) {
+            const p = projects[id];
+            const body = document.getElementById("modal-body");
+            body.innerHTML = `
+                <h2>${p.title}</h2>
+                <img src="${p.img}" class="modal-img">
+                <p style="color: var(--text-dim); font-size: 1.1rem; border-left: 3px solid var(--accent); padding-left: 20px;">${p.details}</p>
+            `;
+            document.getElementById("project-modal").style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+
+        document.getElementById("closeBtn").onclick = () => {
+            document.getElementById("project-modal").style.display = "none";
+            document.body.style.overflow = "auto";
+        };
+
+        window.onclick = (e) => {
+            if(e.target.className === "modal") {
+                document.getElementById("project-modal").style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        };
+    </script>
+</body>
+</html>
