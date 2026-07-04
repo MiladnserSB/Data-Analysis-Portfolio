@@ -116,6 +116,13 @@
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
+
+        /* Card Image Wrapper for External Button */
+        .card-image-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
         .project-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -126,9 +133,40 @@
         }
         .project-card:hover { transform: translateY(-10px); border-color: var(--accent); }
         .project-img { width: 100%; height: 230px; object-fit: cover; transition: 0.5s; }
+        
         .project-info { padding: 1.5rem; }
         .project-info h3 { margin-bottom: 10px; }
         .project-info p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 15px; }
+
+        /* External Link on Card (Animated) */
+        .external-link-on-card {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(5, 5, 7, 0.85);
+            backdrop-filter: blur(8px);
+            color: var(--text-main);
+            padding: 8px 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .external-link-on-card:hover {
+            background: var(--gradient);
+            color: #fff;
+            transform: scale(1.05);
+            border-color: transparent;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+        .external-link-on-card i { font-size: 1rem; }
 
         /* Contact Section */
         .contact-section { text-align: center; background: linear-gradient(to top, rgba(99, 102, 241, 0.05), transparent); border-radius: 50px; margin-bottom: 50px; }
@@ -184,7 +222,6 @@
 
     <section id="skills" class="reveal">
         <div class="section-header">
-            
             <h2>Technical Toolkit</h2>
             <p>Specialized in end-to-end data processing and advanced visualization.</p>
         </div>
@@ -215,11 +252,34 @@
 
     <section id="projects" class="reveal">
         <div class="section-header">
-            
             <h2>Featured Projects</h2>
             <p>Real-world case studies focused on ROI and operational efficiency.</p>
         </div>
         <div class="projects-grid">
+            
+            <!-- Moli Search Engine Project -->
+            <div class="project-card" onclick="openProject('moli')">
+                <div class="card-image-wrapper">
+                    <img src="logo.png" class="project-img" alt="Moli Search Engine Logo">
+                    <!-- External GitHub Link on the Card -->
+                    <a href="https://github.com/MiladnserSB/Moli-Search-Engine" target="_blank" class="external-link-on-card">
+                        <i class="fab fa-github"></i>
+                        <span>View Code</span>
+                    </a>
+                </div>
+                <div class="project-info">
+                    <h3>Moli Search Engine</h3>
+                    <p>A production-grade Information Retrieval system built with Python, FastAPI, and Service-Oriented Architecture (SOA).</p>
+                    <div class="skill-tags">
+                        <span>Python</span>
+                        <span>FastAPI</span>
+                        <span>SOA</span>
+                        <span>NLP</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Udemy Revenue Optimization -->
             <div class="project-card" onclick="openProject('project1')">
                 <img src="Udemy_Courses.png" class="project-img">
                 <div class="project-info">
@@ -228,6 +288,8 @@
                     <div class="skill-tags"><span>Power BI</span> <span>DAX</span></div>
                 </div>
             </div>
+
+            <!-- Lifestyle Risk Prediction -->
             <div class="project-card" onclick="openProject('project2')">
                 <img src="Life_Style.png" class="project-img">
                 <div class="project-info">
@@ -236,6 +298,8 @@
                     <div class="skill-tags"><span>Analytics</span> <span>Power BI</span></div>
                 </div>
             </div>
+
+            <!-- Motorcycle Sales Dashboard -->
             <div class="project-card" onclick="openProject('project3')">
                 <img src="AAA_Sales.png" class="project-img">
                 <div class="project-info">
@@ -244,12 +308,12 @@
                     <div class="skill-tags"><span>Excel Stack</span> <span>Modeling</span></div>
                 </div>
             </div>
+            
         </div>
     </section>
 
     <section id="contact" class="contact-section reveal">
         <div class="section-header">
-            
             <h2>Get In Touch</h2>
             <p>I'm always open to discussing new projects or data opportunities.</p>
         </div>
@@ -286,6 +350,11 @@
 
         // Projects Data
         const projects = {
+            moli: {
+                title: "Moli Search Engine",
+                img: "logo.png",
+                details: "A production-grade Information Retrieval system built with Python and FastAPI, utilizing a Service-Oriented Architecture (SOA). Implements multi-model retrieval (TF-IDF, BM25, Dense Embeddings, Hybrid), query refinement, document clustering (K-Means), and advanced evaluation metrics.<br><br>🔗 <strong>GitHub Repository:</strong> <a href='https://github.com/MiladnserSB/Moli-Search-Engine' target='_blank' style='color: var(--accent);'>github.com/MiladnserSB/Moli-Search-Engine</a>"
+            },
             project1: {
                 title: "Udemy Revenue Optimization",
                 img: "Udemy_Courses.png",
@@ -309,7 +378,7 @@
             body.innerHTML = `
                 <h2>${p.title}</h2>
                 <img src="${p.img}" class="modal-img">
-                <p style="color: var(--text-dim); font-size: 1.1rem; border-left: 3px solid var(--accent); padding-left: 20px;">${p.details}</p>
+                <p style="color: var(--text-dim); font-size: 1.1rem; border-left: 3px solid var(--accent); padding-left: 20px; line-height: 1.8;">${p.details}</p>
             `;
             document.getElementById("project-modal").style.display = "block";
             document.body.style.overflow = "hidden";
